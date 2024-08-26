@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    COURSES
+{% endblock %}
+
+{% block content %}
+
+<h1>Courses List</h1>
+
+
+<div class="form-container">
+    <p><strong>Add New Course </strong> </p>
+
+
+    <form action="{{url_for('add_course')}}" method="POST">
+        {{ form.hidden_tag() }}
+
+        <label for="course_name">Course Name:</label>
+        {{ form.course_name(id="course_name") }}
+        {% for error in form.course_name.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+        
+        <label for="course_description">Course Description:</label>
+        {{ form.course_description(id="course_description") }}
+        {% for error in form.course_description.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+        
+        <label for="course_teacher">Teacher:</label>
+        {{ form.course_teacher(id="course_teacher") }}
+        {% for error in form.course_teacher.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+        
+        {{ form.submit() }}
+
+
+    </form>
+
+</div>
+    <table border="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Teacher</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for id, course in course_list.items() %}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ course.name }}</td>
+                <td>{{ course.description | limit_words(5)}}</td>
+                <td>{{ course.teacher }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No courses available.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

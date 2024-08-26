@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    COURSE DETAIL
+{% endblock %}
+
+{% block content %}
+
+    <h1>Course Detail</h1>
+    <ul>
+        {% if course != None %}
+            <li>
+                <p><strong>Name:</strong> {{ course.name  }}</p>
+                <p><strong>Description:</strong> {{ course.description  }}</p>
+                <p><strong>Teacher:</strong> {{ course.teacher  }}</p>
+            </li>
+        {% else %}
+            <li>No Course found for this ID.</li>
+        {% endif %}
+    </ul>
+
+{% endblock %}
