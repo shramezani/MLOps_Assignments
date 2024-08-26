@@ -6,6 +6,17 @@
 
 {% block content %}
 
-    <h1> PROFILE PAGE </h1>
+    <h1>Student Profiles</h1>
+    <ul>
+        {% for student in students %}
+            <li>
+                <p><strong>Name:</strong> {{ student.name }}</p>
+                <p><strong>Email:</strong> {{ student.email }}</p>
+                <p><strong>Major:</strong> {{ student.major }}</p>
+            </li>
+        {% else %}
+            <li>No students found.</li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

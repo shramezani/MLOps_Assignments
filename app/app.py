@@ -4,7 +4,11 @@ from flask import render_template
 
 app = Flask(__name__)
 
-
+students = [
+    {'name': 'John Doe', 'email': 'john.doe@example.com', 'major': 'Computer Science'},
+    {'name': 'Jane Smith', 'email': 'jane.smith@example.com', 'major': 'Mathematics'},
+    {'name': 'Emily Johnson', 'email': 'emily.johnson@example.com', 'major': 'Physics'}
+]
 
 @app.route('/')
 def home():
@@ -12,7 +16,7 @@ def home():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html', students = students)
 
 @app.route('/courses')
 def courses():
