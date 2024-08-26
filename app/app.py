@@ -1,8 +1,11 @@
 from flask import Flask
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
+from forms import CourseForm
+
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'my_secret_key_here'
 
 student_list = {
     1: {'name': 'John Doe', 'email': 'john.doe@example.com', 'major': 'Computer Science'},
@@ -16,6 +19,8 @@ course_list = {
     3: {'name': 'Physics Fundamentals', 'description': 'Understand the core principles of physics.', 'teacher': 'Dr. Brown'}
 }
 
+course_id_counter = 4
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -26,7 +31,8 @@ def profile():
 
 @app.route('/courses')
 def courses():
-    return render_template('courses.html', course_list = course_list)
+    form = CourseForm()
+    return render_template('courses.html', course_list = course_list, form=form)
 
 
 @app.route('/course_detail', methods=['GET'])
@@ -55,6 +61,27 @@ def update_student():
 
     return redirect(url_for('profile'))
 
+
+@app.route('/add_course', methods=['GET', 'POST'])
+def add_course():
+
+    global course_id_counter
+    form = CourseForm()
+    if form.validate_on_submit():
+        global course_list
+        course_name = form.course_name.data
+        course_description = form.course_description.data
+        course_teacher = form.course_teacher.data
+        
+        course_list[course_id_counter] = {
+            'name': course_name,
+            'description': course_description,
+            'teacher': course_teacher
+        }
+        course_id_counter += 1
+        return redirect(url_for('courses'))
+
+    return render_template('courses.html', course_list=course_list, form=form)
 
 @app.template_filter()
 def limit_words(input_str, length = 10):

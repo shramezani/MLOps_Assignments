@@ -35,6 +35,19 @@ footer {
     box-sizing: border-box; /* Include padding and border in height calculation */
     padding-bottom: 20px; /* To prevent content from being cut off at the bottom */
 }
+.form-container {
+    max-width: 100%;
+    margin: 0 auto; /* Center align the form container */
+    padding: 1rem;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+.form-container form{
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    gap: 1rem; /* Space between items */
+    width: 100%;
+}
+
 
 nav ul {
     list-style: none;
@@ -103,7 +116,8 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+
 .error {
     color: red;
-    text-align: center;
+    font-size: 0.875rem;
 }
