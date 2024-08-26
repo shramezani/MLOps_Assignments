@@ -29,7 +29,12 @@ footer {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
+.content {
+    overflow-y: auto;
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box; /* Include padding and border in height calculation */
+    padding-bottom: 20px; /* To prevent content from being cut off at the bottom */
+}
 
 nav ul {
     list-style: none;

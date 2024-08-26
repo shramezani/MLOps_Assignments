@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 
 
 app = Flask(__name__)
@@ -40,6 +40,20 @@ def course_detail(course_id=None):
     course = course_list.get(int(course_id))
     return render_template('course_detail.html', course = course)
 
+
+@app.route('/update_student', methods=['POST'])
+def update_student():
+    student_id = int(request.form['student_id'])
+    new_name = request.form['name']
+    new_email = request.form['email']
+    new_major = request.form['major']
+
+    if student_id in student_list:
+        student_list[student_id]['name'] = new_name
+        student_list[student_id]['email'] = new_email
+        student_list[student_id]['major'] = new_major
+
+    return redirect(url_for('profile'))
 
 
 @app.template_filter()

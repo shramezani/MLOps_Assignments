@@ -7,6 +7,44 @@
 {% block content %}
 
     <h1>Student Profiles</h1>
+    
+
+    <h3>Edit Student Info</h3>
+
+
+    <form action="{{ url_for('update_student') }}" method="POST">
+    
+        <label for="student_id">Select Student:</label>
+
+        <select name="student_id" id="student_id" required onchange="clearInputs()">
+            <option selected value> None </option>
+            {% for id, student in student_list.items() %}
+                <option value="{{ id }}">{{ student.name }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+
+        <label for="major">Major:</label>
+        <input type="text" name="major" id="major" required>
+
+        <button type="submit">Update Student</button>
+    </form>
+
+    <script>
+        function clearInputs() {
+            // Only clear the input fields, not the dropdown
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("major").value = "";
+        }
+    </script>
+
+    <h3>All Students</h3>
     <ul>
         {% for student in student_list.values() %}
             <li>
