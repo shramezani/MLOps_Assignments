@@ -22,7 +22,7 @@
             <tr>
                 <td>{{ id }}</td>
                 <td>{{ course.name }}</td>
-                <td>{{ course.description }}</td>
+                <td>{{ course.description | limit_words(5)}}</td>
                 <td>{{ course.teacher }}</td>
             </tr>
         {% else %}

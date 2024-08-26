@@ -10,9 +10,9 @@
     <ul>
         {% for student in student_list.values() %}
             <li>
-                <p><strong>Name:</strong> {{ student.name }}</p>
-                <p><strong>Email:</strong> {{ student.email }}</p>
-                <p><strong>Major:</strong> {{ student.major }}</p>
+                <p><strong>Name:</strong> {{ student.name |  upper }}</p>
+                <p><strong>Email:</strong> {{ student.email | lower }}</p>
+                <p><strong>Major:</strong> {{ student.major | capitalize}}</p>
             </li>
         {% else %}
             <li>No students found.</li>

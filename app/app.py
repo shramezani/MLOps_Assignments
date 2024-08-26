@@ -40,5 +40,15 @@ def course_detail(course_id=None):
     course = course_list.get(int(course_id))
     return render_template('course_detail.html', course = course)
 
+
+
+@app.template_filter()
+def limit_words(input_str, length = 10):
+    words = input_str.split()
+    if len(words) > length:
+        return ' '.join(words[:length]) + '...'
+    return input_str
+
+
 if __name__=='__main__':
     app.run(debug=True)
