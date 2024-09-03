@@ -1,19 +1,47 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <label for="username">Username:</label>
-    <input type="text" placeholder="Enter username" name="username">
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" placeholder="Enter email" name="email">
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" placeholder="Enter password" name="password">
-    <br>
-    <label for="confirm password">Confirm password:</label>
-    <input type="password" placeholder="Confirm password" name="confirm password">
-    <br>
-    <button>Register</button>
+<div class="container">
 
+
+    <h1>Signup</h1>
+
+    <form method="POST" action="{{ url_for('signup') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
+            {% for error in form.email.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.confirm_password.label }}<br>
+            {{ form.confirm_password(size=32) }}<br>
+            {% for error in form.confirm_password.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+
+    </form>
+
+</div>
 
 {% endblock %}
