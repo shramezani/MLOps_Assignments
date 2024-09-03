@@ -1,0 +1,24 @@
+{% extends 'index.html'%}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul>
+
+    
+        {% for msg in messages %}
+            <li> {{msg }}   </li>
+
+        {% endfor %}
+
+    </ul>
+{% endif %}
+
+{% endwith %}
+
+<div>
+    <h2> Welcome to your Panel</h2>
+</div>
+
+{% endblock %}
